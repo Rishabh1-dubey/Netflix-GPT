@@ -1,11 +1,10 @@
 
+import Body from './components/Body';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-     hello Rishabh 2.0
-    </div>
+ <Body/>
   );
 }
 
