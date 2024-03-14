@@ -1,7 +1,8 @@
-// Import the functions you need from the SDKs you need
+/// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -13,9 +14,11 @@ const firebaseConfig = {
   projectId: "netflix-gpt-4df7d",
   storageBucket: "netflix-gpt-4df7d.appspot.com",
   messagingSenderId: "148273133496",
-  appId: "1:148273133496:web:5370c0a4b710fdb515014d",
-  measurementId: "G-5C2RZHGVBM"
+  appId: "1:148273133496:web:e9aa15a24d7732cd15014d",
+  measurementId: "G-Y3G68JTES3"
 };
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
