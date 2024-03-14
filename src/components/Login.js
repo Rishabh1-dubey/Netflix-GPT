@@ -5,14 +5,16 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 // import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { NETFLIX_AVATAR } from "../utils/constants";
+
 
 const Login = () => {
   const [isSignInForm, setisSignInFron] = useState(true);
   const [errorMessage, seterrorMessage] = useState(null);
-  const navigate = useNavigate();
+
 
   const dispatch = useDispatch();
 
@@ -39,30 +41,25 @@ const Login = () => {
         email.current.value,
         password.current.value
 
-
       )
-
         .then((userCredential) => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
             //-------------------------------------------itachi url-----------------------------------
-            photoURL: "https://4kwallpapers.com/images/wallpapers/itachi-uchiha-naruto-black-background-minimal-art-amoled-1242x2208-4942.png"
+            photoURL:NETFLIX_AVATAR,
           })
-          
-          
+       
           .then(() => {
             const { uid, email, displayname, photoURL } = auth.currentUser;
             dispatch(addUser({
               uid: uid,
               email: email,
               displayname: displayname,
-              photoURL: photoURL
+              photoURL: photoURL,
             })
-            );
-            navigate("/browser");
+            ); 
             //it will dispatch the action and update the user when user will going to signup 
-            // ...
           }).catch((error) => {
             // An error occurred
             seterrorMessage(error.message);
@@ -86,7 +83,7 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user)
-          navigate("/browser");
+       
 
         })
         .catch((error) => {

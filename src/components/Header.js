@@ -1,9 +1,11 @@
 import { signOut } from "firebase/auth";
+import { useEffect } from "react";
 import items from "../items/Netflix_Logo_PMS.png"
 import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../utils/userSlice";
+import { addUser ,removeUser} from "../utils/userSlice";
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector(store => store.user);
@@ -11,7 +13,7 @@ const Header = () => {
 
   const handleSignout = () => {
     signOut(auth).then(() => {
-      navigate("/")
+  
     }).catch((error) => {
       //ab error hanppend
       navigate("/error");
@@ -19,14 +21,14 @@ const Header = () => {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe=   onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayname, photoURL } = user;
         dispatch(addUser({
           uid: uid,
           email: email,
           displayname: displayname,
-          photoURL: photoURL
+          photoURL: photoURL,
         })
         );
         navigate("/browser")
@@ -35,7 +37,9 @@ const Header = () => {
         dispatch(removeUser());
         navigate("/");
       }
-    })
+    });
+//unsubscribe when components is unmount
+    return ()=>unsubscribe();
   }, [])
 
 
