@@ -3,7 +3,7 @@ import BackgroundVideo from "./BackgroundVideo";
 import VideoTitle from "./VideoTitle";
 
 const MainContainer = () => {
-  const movies = useSelector((store) => store.movies?.nowPlayingMovies);
+  const movies = useSelector((store) => store.movies?.  nowPlayingMovies);
   // ye tera movie app store se aa rha
 
   // if (!movies ) return;

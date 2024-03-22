@@ -43,3 +43,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
    - Netflxi GPT 
           - Search Bar
         - Movie Suggestion               
+
+        -get data form tmdb now playing movies list api
+        custom Hook for nowPlaying moives
